@@ -1,6 +1,6 @@
 export function sayHello() {
-  console.log("hi");
+  console.log("hi")
 }
 export function sayGoodbye() {
-  console.log("goodbye");
+  console.log("goodbye")
 }

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "lib",
+    "strict": true,
+    "target": "esnext"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts"]
+}
