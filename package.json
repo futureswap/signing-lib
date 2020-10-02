@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/futureswap/signing-lib/issues"
   },
-  "homepage": "https://github.com/futureswap/signing-lib#readme"
+  "homepage": "https://github.com/futureswap/signing-lib#readme",
+  "dependencies": {
+    "ethers": "^5.0.14"
+  }
 }
