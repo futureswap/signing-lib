@@ -1,4 +1,4 @@
-import { LooseObject } from "./types";
+import { LooseObject } from "../common/types";
 export interface AbiType {
     readonly type: string;
     readonly name: string;
