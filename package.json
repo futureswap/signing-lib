@@ -1,7 +1,7 @@
 {
-  "name": "signing-lib",
+  "name": "@fs-labs/signing-lib",
   "version": "1.0.0",
-  "description": "",
+  "description": "## To use",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
@@ -11,5 +11,18 @@
   },
   "devDependencies": {
     "typescript": "^4.0.2"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futureswap/signing-lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/futureswap/signing-lib/issues"
+  },
+  "homepage": "https://github.com/futureswap/signing-lib#readme"
 }
