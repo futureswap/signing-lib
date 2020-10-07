@@ -1,14 +1,13 @@
 {
   "name": "@fs-labs/signing-lib",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "## To use",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",
   "scripts": {
     "build": "rimraf lib && tsc",
-    "dev": "tsc -w",
-    "minify": "uglifyjs --compress --mangle --output lib/index.min.js -- lib/index.js"
+    "dev": "tsc -w"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
