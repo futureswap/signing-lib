@@ -78,6 +78,7 @@ export interface BalancePoolDecode {
 export interface InstantWithdrawDecode {
   message: InstantWithdrawMessage;
   validationRule: any;
+  userAddress: string;
 }
 
 const COMMON_ABI: ReadonlyArray<AbiType> = [
@@ -220,16 +221,28 @@ const INSTANT_WITHDRAW_ABI: ReadonlyArray<AbiType> = [
     validation: "required|eth_bignumber"
   },
   {
+    type: "uint256",
+    name: "userInteractionNumber",
+    validation: "required|eth_bignumber"
+  },
+  {
     type: "address",
     name: "registryHolder",
     validation: "required|eth_address"
+  },
+  {
+    type: "uint256",
+    name: "minTransmitterGas",
+    validation: "required|eth_bignumber"
   }
 ];
 
-export interface InstantWithdrawMessage extends CommonTransactionMessage {
+export interface InstantWithdrawMessage {
   tokenAddress: string;
   amount: BigNumber;
+  userInteractionNumber: BigNumber;
   registryHolder: string;
+  minTransmitterGas: BigNumber;
 }
 
 export interface LiquidateTradeMessage extends CommonTransactionMessage {
@@ -308,14 +321,7 @@ export class UserMessageEncoder extends BaseCoder {
     message: InstantWithdrawMessage,
     signRequest: (messageHashBytes: Uint8Array) => Promise<string>
   ) {
-    checkArgument(message.functionId === FunctionId.INSTANT_WITHDRAW_ID);
-
-    const object = {
-      ...message,
-      specificMessage: this.packData(INSTANT_WITHDRAW_ABI, message)
-    };
-
-    return this.encode(object, signRequest, COMMON_ABI);
+    return this.encode(message, signRequest, INSTANT_WITHDRAW_ABI);
   }
 
   encodeLiquidateTrade(
@@ -390,8 +396,16 @@ export class UserMessageDecoder extends BaseCoder {
     return this.decode(packedMessage, ADD_COLLATERAL_ABI);
   }
 
-  decodeInstantWithdraw(packedMessage: string): InstantWithdrawDecode {
-    return this.decode(packedMessage, INSTANT_WITHDRAW_ABI);
+  decodeInstantWithdraw(
+    packedMessage: string,
+    signature: string
+  ): InstantWithdrawDecode {
+    const decode = this.decode(packedMessage, INSTANT_WITHDRAW_ABI);
+
+    return {
+      ...decode,
+      userAddress: this.calculateUserAddress(packedMessage, signature)
+    };
   }
 
   decodeLiquidateTrade(packedMessage: string): LiquidateTradeDecode {

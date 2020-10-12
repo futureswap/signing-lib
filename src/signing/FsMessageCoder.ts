@@ -47,12 +47,39 @@ export interface UnpackedOracleMessage {
   tradeFeeStable: string;
 }
 
+export interface InstantWithdrawOracleMessage {
+  userMessage: string;
+  userSignature: string;
+  signatureTime: number;
+}
+
+const ORACLE_INSTANT_WITHDRAW_ABI: ReadonlyArray<AbiType> = [
+  {
+    type: "bytes",
+    name: "userMessage",
+    validation: "Not needed"
+  },
+  {
+    type: "bytes",
+    name: "userSignature",
+    validation: "Not needed"
+  },
+  { type: "uint256", name: "signatureTime", validation: "Not needed" }
+];
+
 export class OracleMessageEncoder extends BaseCoder {
   async encodeOracleMessage(
     oracleMessage: UnpackedOracleMessage,
     signRequest: (messageHashBytes: Uint8Array) => Promise<string>
   ) {
     return this.encode(oracleMessage, signRequest, ORACLE_MESSAGE_ABI);
+  }
+
+  async encodeInstantWithdrawOracleMessage(
+    oracleMessage: InstantWithdrawOracleMessage,
+    signRequest: (messageHashBytes: Uint8Array) => Promise<string>
+  ) {
+    return this.encode(oracleMessage, signRequest, ORACLE_INSTANT_WITHDRAW_ABI);
   }
 }
 
