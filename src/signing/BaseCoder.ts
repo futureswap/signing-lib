@@ -1,4 +1,4 @@
-import { utils } from "ethers";
+import { utils, BigNumber } from "ethers";
 import { LooseObject } from "../common/types";
 import { checkDefined } from "../common/preconditions";
 
