@@ -1,6 +1,6 @@
 {
   "name": "@fs-labs/signing-lib",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "## To use",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",

@@ -10,8 +10,17 @@ export interface UnpackedOracleMessage {
     userSignature: string;
     tradeFeeStable: string;
 }
+export interface InstantWithdrawOracleMessage {
+    userMessage: string;
+    userSignature: string;
+    signatureTime: number;
+}
 export declare class OracleMessageEncoder extends BaseCoder {
     encodeOracleMessage(oracleMessage: UnpackedOracleMessage, signRequest: (messageHashBytes: Uint8Array) => Promise<string>): Promise<{
+        packedMessage: string;
+        signature: string;
+    }>;
+    encodeInstantWithdrawOracleMessage(oracleMessage: InstantWithdrawOracleMessage, signRequest: (messageHashBytes: Uint8Array) => Promise<string>): Promise<{
         packedMessage: string;
         signature: string;
     }>;

@@ -44,6 +44,7 @@ export interface BalancePoolDecode {
 export interface InstantWithdrawDecode {
     message: InstantWithdrawMessage;
     validationRule: any;
+    userAddress: string;
 }
 export interface CommonTransactionMessage {
     functionId: number;
@@ -72,10 +73,12 @@ export interface AddCollateralMessage extends CommonTransactionMessage {
     tradeId: BigNumber;
     collateral: BigNumber;
 }
-export interface InstantWithdrawMessage extends CommonTransactionMessage {
+export interface InstantWithdrawMessage {
     tokenAddress: string;
     amount: BigNumber;
+    userInteractionNumber: BigNumber;
     registryHolder: string;
+    minTransmitterGas: BigNumber;
 }
 export interface LiquidateTradeMessage extends CommonTransactionMessage {
     tradeId: BigNumber;
@@ -122,7 +125,7 @@ export declare class UserMessageDecoder extends BaseCoder {
     decodeOpenTrade(packedMessage: string): OpenTradeDecode;
     decodeCloseTrade(packedMessage: string): CloseTradeDecode;
     decodeAddCollateral(packedMessage: string): AddCollateralDecode;
-    decodeInstantWithdraw(packedMessage: string): InstantWithdrawDecode;
+    decodeInstantWithdraw(packedMessage: string, signature: string): InstantWithdrawDecode;
     decodeLiquidateTrade(packedMessage: string): LiquidateTradeDecode;
     decodeChangeLiquidity(packedMessage: string): ChangeLiquidityDecode;
     decodeBalancePools(packedMessage: string): BalancePoolDecode;
