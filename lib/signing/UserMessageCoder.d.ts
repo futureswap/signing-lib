@@ -1,5 +1,5 @@
-import { BigNumber } from "ethers";
-import { BaseCoder } from "./BaseCoder";
+import { BigNumber } from 'ethers';
+import { BaseCoder } from './BaseCoder';
 export declare const FunctionId: {
     ADD_LIQUIDITY_ID: number;
     REMOVE_LIQUIDITY_ID: number;
@@ -119,14 +119,4 @@ export declare class UserMessageEncoder extends BaseCoder {
         packedMessage: string;
         signature: string;
     }>;
-}
-export declare class UserMessageDecoder extends BaseCoder {
-    decodeCommonMessage(packedMessage: string, signature: string): DecodedMessage;
-    decodeOpenTrade(packedMessage: string): OpenTradeDecode;
-    decodeCloseTrade(packedMessage: string): CloseTradeDecode;
-    decodeAddCollateral(packedMessage: string): AddCollateralDecode;
-    decodeInstantWithdraw(packedMessage: string, signature: string): InstantWithdrawDecode;
-    decodeLiquidateTrade(packedMessage: string): LiquidateTradeDecode;
-    decodeChangeLiquidity(packedMessage: string): ChangeLiquidityDecode;
-    decodeBalancePools(packedMessage: string): BalancePoolDecode;
 }

@@ -1,4 +1,4 @@
-import { LooseObject } from "../common/types";
+import { LooseObject } from '../common/types';
 export interface AbiType {
     readonly type: string;
     readonly name: string;
@@ -17,6 +17,5 @@ export declare class BaseCoder {
     protected packData(abiArray: ReadonlyArray<AbiType>, message: LooseObject): string;
     protected getAbiTypes(abiArray: ReadonlyArray<AbiType>): string[];
     protected createValueArray(abiArray: ReadonlyArray<AbiType>, message: LooseObject): any[];
-    protected calculateUserAddress(packedMessage: string, signature: string): string;
     protected computeValiationRule(abiArray: ReadonlyArray<AbiType>): LooseObject;
 }
